@@ -14,6 +14,7 @@ if [[ "${VERBOSE}" == "2" ]]; then
 fi
 TIME_START="$(date +%s)"
 DATADIR="${DIR}/data"
+mkdir -p ${DATADIR}
 rm -rf ${DATADIR}/*
 
 DISTRIB_ID=`grep DISTRIB_ID /etc/*-release | awk -F '=' '{print $2}'`
