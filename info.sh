@@ -4,7 +4,7 @@ export DEBIAN_FRONTEND=noninteractive
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 [[ -z "${CLEAN}" ]] && CLEAN="1"
 TIME_START="$(date +%s)"
-DATADIR="${DIR}/data"
+DATADIR="${DIR}/tmpdata"
 
 function init {
     mkdir -p ${DATADIR}
@@ -109,7 +109,7 @@ function upload {
         -o UserKnownHostsFile=/dev/null \
         -P ${REMOTEPORT} \
         -r \
-        ./data/* \
+        ${DATADIR}/* \
         root@${REMOTEIP}:/data/${OURNAME}/
 }
 
