@@ -119,6 +119,7 @@ function upload {
 }
 
 
+init
 info
 if [[ "${REMOTEIP}" != "" ]]; then
     upload
