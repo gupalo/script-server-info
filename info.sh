@@ -2,14 +2,7 @@
 
 export DEBIAN_FRONTEND=noninteractive
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
-[[ -z "${VERBOSE}" ]] && VERBOSE="1"
-OUTPUT="/dev/null"
-if [[ "${VERBOSE}" == "1" ]]; then
-    OUTPUT="/dev/null"
-fi
-if [[ "${VERBOSE}" == "2" ]]; then
-    OUTPUT="/dev/stdout"
-fi
+[[ -z "${CLEAN}" ]] && CLEAN="1"
 TIME_START="$(date +%s)"
 DATADIR="${DIR}/data"
 
@@ -96,6 +89,8 @@ function upload {
 
     [[ -z "${REMOTEIP}" ]] && echo '[ERROR] empty REMOTEIP env: need to know where to upload' >&2 && exit 1
 
+    chmod 0600 ./id_rsa
+
     ssh \
         -i ./id_rsa \
         -o LogLevel=error \
@@ -118,9 +113,16 @@ function upload {
         root@${REMOTEIP}:/data/${OURNAME}/
 }
 
+function clean {
+    rm ./id_rsa ./info.sh
+    rm -rf ${DATADIR}/*
+}
 
 init
 info
 if [[ "${REMOTEIP}" != "" ]]; then
     upload
+fi
+if [[ "${CLEAN}" == "1" ]]; then
+    clean
 fi
