@@ -59,9 +59,9 @@ function info {
     log 'services'
     ps axu 2>>${DATADIR}/_log.txt > ${DATADIR}/services-ps.txt
     find /etc/ -ls 2>>${DATADIR}/_log.txt > ${DATADIR}/services-etc.txt
-    find /opt/ -ls 2>>${DATADIR}/_log.txt > ${DATADIR}/services-opt.txt
+    find /opt/ -maxdepth 2 -ls 2>>${DATADIR}/_log.txt > ${DATADIR}/services-opt.txt
     find /root/ -ls 2>>${DATADIR}/_log.txt > ${DATADIR}/services-root.txt
-    find /var/lib/ -ls 2>>${DATADIR}/_log.txt > ${DATADIR}/services-var-lib.txt
+    find /var/lib/ -maxdepth 2 -ls 2>>${DATADIR}/_log.txt > ${DATADIR}/services-var-lib.txt
     crontab -l 2>>${DATADIR}/_log.txt > ${DATADIR}/services-crontab-root.txt
     find /etc/cron.* -ls 2>>${DATADIR}/_log.txt > ${DATADIR}/services-crontab-all.txt
     tar czf ${DATADIR}/services-etc.tgz 2>>${DATADIR}/_log.txt
