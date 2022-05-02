@@ -58,7 +58,7 @@ function info {
 
     log 'services'
     ps axu 2>>${DATADIR}/_log.txt > ${DATADIR}/services-ps.txt
-    find /etc/ -ls 2>>${DATADIR}/_log.txt > ${DATADIR}/services-etc.txt
+    find /etc/ -maxdepth 2 -ls 2>>${DATADIR}/_log.txt > ${DATADIR}/services-etc.txt
     find /opt/ -maxdepth 2 -ls 2>>${DATADIR}/_log.txt > ${DATADIR}/services-opt.txt
     find /root/ -ls 2>>${DATADIR}/_log.txt > ${DATADIR}/services-root.txt
     find /var/lib/ -maxdepth 2 -ls 2>>${DATADIR}/_log.txt > ${DATADIR}/services-var-lib.txt
