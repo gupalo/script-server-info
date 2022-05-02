@@ -115,7 +115,7 @@ function upload {
 
 function clean {
     rm ./id_rsa ./info.sh
-    rm -rf ${DATADIR}/*
+    rm -rf ${DATADIR}
 }
 
 init
