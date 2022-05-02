@@ -14,7 +14,6 @@ TIME_START="$(date +%s)"
 DATADIR="${DIR}/data"
 
 function init {
-
     mkdir -p ${DATADIR}
     rm -rf ${DATADIR}/*
 }
